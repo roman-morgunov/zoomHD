@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		*{
+			-webkit-user-drag: none;
+			-webkit-user-select: none;
+		}
+		html, body{
+			height: 99%;
+			width: 99%;
+			overflow: hidden;
+		}
+
+		.zoom-hd-wrapper{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -250px;
+			margin-top: -141px;
+			width: 500px;
+			height: 282px;
+		}
+
+		.zoom-hd-target,
+		.pseudo-image,
+		img,
+		p{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.zoom-hd-target{
+			opacity: 0.2;
+			pointer-events: none;
+		}
+
+		.pseudo-image-wrapper{
+			border: 1px solid red;
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+
+			-webkit-transform: translate3d(0, 0, 0);
+			-ms-transform: translate3d(0, 0, 0);
+			-moz-transform: translate3d(0, 0, 0);
+			-o-transform: translate3d(0, 0, 0);
+
+			transform: translate(0, 0);
+		}
+
+		p{
+			width: 100%;
+			top: 100%;
+			text-align: center;
+			font-size: 15px;
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		mark{
+			color: red;
+			background-color: transparent;
+			font-weight: bold;
+		}
+	</style>
+
+	<script src="zoomHD/zoomHD.js"></script>
+</head>
+<body>
+
+	<div class="zoom-hd-wrapper" style="display: none;">
+		<img class="zoom-hd-target zoom-hd-sync" width="500" height="282" src="SNAG-0001.jpg" alt="image"/>
+
+		<div class="pseudo-image-wrapper">
+			<img class="zoom-hd-sync" width="500" height="282" src="SNAG-0001.jpg" alt="image"/>
+		</div>
+
+		<p>
+			Use <mark>SHIFT</mark> key + mouse to zoomIn, and <mark>CTRL</mark> key + mouse to zoomOut
+		</p>
+	</div>
+
+	<script>
+
+		(function(){
+			var ptz = new PinchToZoom(document.getElementsByClassName('zoom-hd-wrapper')[0], {maxZoom: 4, syncClass: 'zoom-hd-sync'});
+
+			//Todo: remove after test
+			setTimeout(function(){
+				document.getElementsByClassName('zoom-hd-wrapper')[0].style.display = 'block';
+			}, 100);
+		})();
+
+	</script>
+</body>
+</html>
